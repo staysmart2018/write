@@ -32,8 +32,15 @@ const IELTSWritingPage = () => {
   // Function to adjust the height of the specified text area
   const adjustTextAreaHeight = (ref) => {
     if (ref.current) {
+      // Save the current scroll position
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Adjust the height of the textarea
       ref.current.style.height = 'auto';
       ref.current.style.height = ref.current.scrollHeight + 'px';
+
+      // Restore the scroll position
+      window.scrollTo(0, scrollTop);
     }
   };
 
@@ -187,26 +194,27 @@ const IELTSWritingPage = () => {
               <p>
                 {currentQuestion === 1 ? (
                   <>
-                   <div>
-      <p>
-        <strong>1)</strong> You are required to write 150 words or more.
-        <br />
-        If you write less than 150 words, you are unlikely to get more than a Band 5 for ‘task achievement’ as you won’t have fulfilled the marking criteria.
-      </p>
-      <p>
-        <strong>2)</strong> You have around 20 minutes to plan and write your essay.
-      </p>
-      <p>
-        <strong>3)</strong> You should use a formal style of writing.
-      </p>
-      <p>
-        <strong>4)</strong> Task 1 contributes half as many marks to your score as Task 2. So, Task 1 is worth 33% of the total mark in the Writing test.
-      </p>
-    </div>
+                    <div>
+                      <p>
+                        <strong>1)</strong> You are required to write 150 words or more.
+                        <br />
+                        If you write less than 150 words, you are unlikely to get more than a Band 5 for ‘task achievement’ as you won’t have fulfilled the marking criteria.
+                      </p>
+                      <p>
+                        <strong>2)</strong> You have around 20 minutes to plan and write your essay.
+                      </p>
+                      <p>
+                        <strong>3)</strong> You should use a formal style of writing.
+                      </p>
+                      <p>
+                        <strong>4)</strong> Task 1 contributes half as many marks to your score as Task 2. So, Task 1 is worth 33% of the total mark in the Writing test.
+                      </p>
+                    </div>
                   </>
                 ) : (
                   <>
-IELTS Writing Task 2 is the second part of the writing test, where you are presented with a point of view, argument or problem and asked to write an essay in response. Your essay should be in a formal style, at least 250 words in length and you should aim to complete it in under 40 minutes.                   </>
+                    IELTS Writing Task 2 is the second part of the writing test, where you are presented with a point of view, argument or problem and asked to write an essay in response. Your essay should be in a formal style, at least 250 words in length and you should aim to complete it in under 40 minutes.
+                  </>
                 )}
               </p>
             </div>
@@ -239,10 +247,18 @@ IELTS Writing Task 2 is the second part of the writing test, where you are prese
           </div>
           <div className="footer">
             <div className="navigation">
-              <button className="nav-button" onClick={() => handleQuestionChange('previous')} disabled={currentQuestion === 1}>
+              <button
+                className="nav-button"
+                onClick={() => handleQuestionChange('previous')}
+                disabled={currentQuestion === 1}
+              >
                 &larr; Previous
               </button>
-              <button className="nav-button" onClick={() => handleQuestionChange('next')} disabled={currentQuestion === totalQuestions}>
+              <button
+                className="nav-button"
+                onClick={() => handleQuestionChange('next')}
+                disabled={currentQuestion === totalQuestions}
+              >
                 Next &rarr;
               </button>
             </div>
@@ -264,3 +280,4 @@ IELTS Writing Task 2 is the second part of the writing test, where you are prese
 };
 
 export default IELTSWritingPage;
+
